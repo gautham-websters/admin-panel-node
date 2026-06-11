@@ -8,6 +8,7 @@ import {
 const router = express.Router();
 
 router.get("/", getBlogs);
+
 router.get("/:slug", getBlogBySlug);
 
 export default router;
