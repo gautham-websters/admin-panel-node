@@ -2,7 +2,7 @@
 cd /d C:\inetpub\wwwroot\websters.ae\httpdocs\admin-panel-node
 
 echo Pulling latest code...
-git pull origin main
+git pull websters main
 
 echo Installing dependencies...
 call npm i --no-audit --no-fund
