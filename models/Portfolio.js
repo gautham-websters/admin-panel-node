@@ -21,11 +21,11 @@ const PortfolioProject = sequelize.define(
       allowNull: false,
     },
 
-    imageAltText: {
-      type: DataTypes.STRING(500),
-      allowNull: false,
-      defaultValue: "",
-    },
+    // imageAltText: {
+    //   type: DataTypes.STRING(500),
+    //   allowNull: false,
+    //   defaultValue: "",
+    // },
 
     order: {
       type: DataTypes.INTEGER,
@@ -38,25 +38,14 @@ const PortfolioProject = sequelize.define(
   },
 );
 
-PortfolioProject.addHook(
-  "beforeDestroy",
-  async (portfolio) => {
-    await deleteFileIfExists(portfolio.image);
-  }
-);
+PortfolioProject.addHook("beforeDestroy", async (portfolio) => {
+  await deleteFileIfExists(portfolio.image);
+});
 
-PortfolioProject.addHook(
-  "beforeUpdate",
-  async (portfolio) => {
-    if (
-      portfolio.changed("image") &&
-      portfolio.previous("image")
-    ) {
-      await deleteFileIfExists(
-        portfolio.previous("image")
-      );
-    }
+PortfolioProject.addHook("beforeUpdate", async (portfolio) => {
+  if (portfolio.changed("image") && portfolio.previous("image")) {
+    await deleteFileIfExists(portfolio.previous("image"));
   }
-);
+});
 
 export default PortfolioProject;

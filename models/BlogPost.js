@@ -21,11 +21,11 @@ const BlogPost = sequelize.define(
       allowNull: false,
     },
 
-    imageAltText: {
-      type: DataTypes.STRING(500),
-      allowNull: false,
-      defaultValue: "",
-    },
+    // imageAltText: {
+    //   type: DataTypes.STRING(500),
+    //   allowNull: false,
+    //   defaultValue: "",
+    // },
 
     link: {
       type: DataTypes.STRING(1000),
