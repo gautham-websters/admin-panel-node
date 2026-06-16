@@ -42,7 +42,7 @@ export const uploadImage = async (req, res, next) => {
       }
     }, 1000);
 
-    await fs.unlink(req.file.path);
+    // await fs.unlink(req.file.path);
 
     const url = `/uploads/${folder}/${filename}`;
 
