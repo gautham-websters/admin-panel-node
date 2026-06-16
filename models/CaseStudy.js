@@ -38,7 +38,7 @@ const CaseStudy = sequelize.define(
     },
   },
   {
-    tableName: "case_studies",
+    tableName: "awes_case_studies",
     timestamps: true,
   },
 );

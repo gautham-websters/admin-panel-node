@@ -1,5 +1,27 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
+import { deleteFileIfExists } from "../utils/deleteFile.js";
+
+PortfolioProject.addHook(
+  "beforeDestroy",
+  async (portfolio) => {
+    await deleteFileIfExists(portfolio.image);
+  }
+);
+
+PortfolioProject.addHook(
+  "beforeUpdate",
+  async (portfolio) => {
+    if (
+      portfolio.changed("image") &&
+      portfolio.previous("image")
+    ) {
+      await deleteFileIfExists(
+        portfolio.previous("image")
+      );
+    }
+  }
+);
 
 const PortfolioProject = sequelize.define(
   "PortfolioProject",
@@ -20,13 +42,19 @@ const PortfolioProject = sequelize.define(
       allowNull: false,
     },
 
+    imageAltText: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
+      defaultValue: "",
+    },
+
     order: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
   },
   {
-    tableName: "portfolio_projects",
+    tableName: "awes_portfolio_projects",
     timestamps: true,
   },
 );
