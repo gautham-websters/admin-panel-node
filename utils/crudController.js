@@ -31,7 +31,6 @@ export const createCrudController = (Model) => ({
       }
 
       await item.update(req.body);
-      await item.destroy();
 
       res.json(item);
     } catch (err) {
