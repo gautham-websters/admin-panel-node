@@ -21,12 +21,6 @@ const BlogPost = sequelize.define(
       allowNull: false,
     },
 
-    // imageAltText: {
-    //   type: DataTypes.STRING(500),
-    //   allowNull: false,
-    //   defaultValue: "",
-    // },
-
     link: {
       type: DataTypes.STRING(1000),
       allowNull: true,
@@ -35,6 +29,22 @@ const BlogPost = sequelize.define(
     order: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+    },
+
+    shortDesc: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+
+    publishedAt: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {

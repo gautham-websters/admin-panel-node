@@ -34,15 +34,9 @@ export const uploadImage = async (req, res, next) => {
       try {
         await fs.unlink(req.file.path);
       } catch (err) {
-        res.status(500).json({
-          success: false,
-          message: err.message || "Error deleting temporary file",
-        });
         console.error(err);
       }
     }, 1000);
-
-    // await fs.unlink(req.file.path);
 
     const url = `/uploads/${folder}/${filename}`;
 
