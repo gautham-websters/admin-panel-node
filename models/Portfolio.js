@@ -2,27 +2,6 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
 import { deleteFileIfExists } from "../utils/deleteFile.js";
 
-PortfolioProject.addHook(
-  "beforeDestroy",
-  async (portfolio) => {
-    await deleteFileIfExists(portfolio.image);
-  }
-);
-
-PortfolioProject.addHook(
-  "beforeUpdate",
-  async (portfolio) => {
-    if (
-      portfolio.changed("image") &&
-      portfolio.previous("image")
-    ) {
-      await deleteFileIfExists(
-        portfolio.previous("image")
-      );
-    }
-  }
-);
-
 const PortfolioProject = sequelize.define(
   "PortfolioProject",
   {
@@ -57,6 +36,27 @@ const PortfolioProject = sequelize.define(
     tableName: "awes_portfolio_projects",
     timestamps: true,
   },
+);
+
+PortfolioProject.addHook(
+  "beforeDestroy",
+  async (portfolio) => {
+    await deleteFileIfExists(portfolio.image);
+  }
+);
+
+PortfolioProject.addHook(
+  "beforeUpdate",
+  async (portfolio) => {
+    if (
+      portfolio.changed("image") &&
+      portfolio.previous("image")
+    ) {
+      await deleteFileIfExists(
+        portfolio.previous("image")
+      );
+    }
+  }
 );
 
 export default PortfolioProject;
