@@ -44,12 +44,14 @@ export const createCrudController = (Model) => ({
       const item = await Model.findByPk(req.params.id);
 
       if (!item) {
-        return res.sendStatus(404);
+        return res.status(404).json({
+          message: "Not found",
+        });
       }
 
       await item.destroy();
 
-      res.sendStatus(204);
+      res.json(item);
     } catch (err) {
       next(err);
     }
