@@ -16,6 +16,11 @@ const PortfolioProject = sequelize.define(
       allowNull: false,
     },
 
+    description: {
+      type: DataTypes.STRING(500),
+      allowNull: true,
+    },
+
     image: {
       type: DataTypes.STRING(1000),
       allowNull: false,
