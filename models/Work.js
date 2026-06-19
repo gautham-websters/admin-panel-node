@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
+import { deleteFileIfExistsWeb } from "../utils/deleteFile.js";
 
 const Work = sequelize.define(
   "Work",
@@ -68,5 +69,15 @@ const Work = sequelize.define(
     timestamps: true,
   },
 );
+
+Work.addHook("beforeDestroy", async (work) => {
+  await deleteFileIfExistsWeb(work.image);
+});
+
+Work.addHook("beforeUpdate", async (work) => {
+  if (work.changed("image") && work.previous("image")) {
+    await deleteFileIfExistsWeb(work.previous("image"));
+  }
+});
 
 export default Work;
