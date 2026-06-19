@@ -12,8 +12,6 @@ export const uploadImage = async (req, res, next) => {
       });
     }
 
-    console.log(req);
-
     const folder = req.body.folder || "misc";
 
     const uploadDir = path.join(process.cwd(), "uploads", folder);
