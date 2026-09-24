@@ -1,0 +1,12 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "formatter": true,
+  "permission": {
+    "edit": "allow",
+    "bash": "ask"
+  },
+  "watcher": {
+    "ignore": ["node_modules/**", "uploads/**", "temp/**", ".git/**"]
+  }
+}
