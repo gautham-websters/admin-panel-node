@@ -11,7 +11,8 @@ Backend API that powers **two** websites from a single Express server:
 **Stack:** Node.js 18+ (ES modules) · Express 5 · Sequelize 6 · MSSQL (`tedious`) ·
 Multer + Sharp (image uploads) · JSON Web Tokens (`jsonwebtoken`) · `cors`, `dotenv`, `uuid`.
 
-> ⚠️ **Security notice (read first):** `middleware/auth.js` is currently a no-op —
+> [!WARNING]
+> **Security notice (read first):** `middleware/auth.js` is currently a no-op —
 > it calls `next()` without verifying any token. That means every route wired with
 > `auth` (all `/web/admin/*` and `/admin/*` routes) is **effectively public** right
 > now. See [Authentication](#3-authentication--known-gap) before exposing this server.
